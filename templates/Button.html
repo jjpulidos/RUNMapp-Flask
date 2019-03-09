@@ -7,9 +7,24 @@
 <body>
 <h1> Test Flask Git</h1>
 <div class="Events-Page">
-    <form class="Events-form" action = "http://192.168.1.138:5000/getEvents" method = "post">
-      <input type="text" placeholder="Edificio" name = "edificio"/>
-        <button value = "submit" >Buscar</button>
+    <input id="ipMaster" type="text" placeholder="HOLA" name="ip"/>
+
+
+    <form id="actionWr" class="Events-form" method="post" onsubmit="fun()">
+
+        <script>
+
+            const ip = document.getElementById("ipMaster").value;
+
+            function fun() {
+                document.getElementById("actionWr").action = `http://${ip}:5000/getEvents`
+                console.log(`http://${ip}:5000/getEvents`)
+            }
+
+        </script>
+
+        <input type="text" placeholder="Edificio" name="edificio"/>
+        <button value="submit">Buscar</button>
     </form>
 </div>
 
