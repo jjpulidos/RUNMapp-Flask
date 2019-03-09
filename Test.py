@@ -17,7 +17,8 @@ def db_getEvents(building):
 @app.route('/')
 def index():
     return render_template('Button.html')
-
+def hello():
+    print("Hello")
 @app.route('/getEvents', methods=['POST', 'GET'])
 def getEvents():
     error = None
