@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="d685682d-4566-4607-939e-6d07553de448" name="Default Changelist" comment="" />
+=======
     <list default="true" id="d685682d-4566-4607-939e-6d07553de448" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
+>>>>>>> 91a5667ff88c2f867df10728734138fc69d51072
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,8 +52,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="220">
+              <caret line="162" column="34" lean-forward="true" selection-start-line="162" selection-start-column="34" selection-end-line="162" selection-end-column="34" />
+=======
             <state relative-caret-position="265">
               <caret line="165" column="17" lean-forward="true" selection-start-line="165" selection-start-column="17" selection-end-line="165" selection-end-column="17" />
+>>>>>>> 91a5667ff88c2f867df10728734138fc69d51072
             </state>
           </provider>
         </entry>
@@ -58,7 +67,15 @@
         <entry file="file://$PROJECT_DIR$/templates/Button.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
+<<<<<<< HEAD
               <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+=======
+<<<<<<< HEAD
+              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+=======
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+>>>>>>> 91a5667ff88c2f867df10728734138fc69d51072
+>>>>>>> JuanDev
             </state>
           </provider>
         </entry>
@@ -194,12 +211,28 @@
       <option name="presentableId" value="Default" />
       <updated>1552152036013</updated>
       <workItem from="1552152037292" duration="1529000" />
+<<<<<<< HEAD
       <workItem from="1552153608361" duration="4901000" />
+=======
+<<<<<<< HEAD
+      <workItem from="1552153608361" duration="5381000" />
+=======
+      <workItem from="1552153608361" duration="4226000" />
+>>>>>>> 91a5667ff88c2f867df10728734138fc69d51072
+>>>>>>> JuanDev
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="840000" />
+=======
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="1320000" />
+=======
+    <option name="totallyTimeSpent" value="165000" />
+>>>>>>> 91a5667ff88c2f867df10728734138fc69d51072
+>>>>>>> JuanDev
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
@@ -235,7 +268,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Test.py</url>
-          <line>33</line>
+          <line>34</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
@@ -258,7 +291,22 @@
     <entry file="file://$PROJECT_DIR$/templates/Button.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
+<<<<<<< HEAD
           <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+=======
+<<<<<<< HEAD
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+=======
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+>>>>>>> JuanDev
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pollo.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="27" lean-forward="true" selection-start-column="27" selection-end-column="27" />
+>>>>>>> 91a5667ff88c2f867df10728734138fc69d51072
         </state>
       </provider>
     </entry>
@@ -281,8 +329,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="220">
+          <caret line="162" column="34" lean-forward="true" selection-start-line="162" selection-start-column="34" selection-end-line="162" selection-end-column="34" />
+=======
         <state relative-caret-position="265">
           <caret line="165" column="17" lean-forward="true" selection-start-line="165" selection-start-column="17" selection-end-line="165" selection-end-column="17" />
+>>>>>>> 91a5667ff88c2f867df10728734138fc69d51072
         </state>
       </provider>
     </entry>
