@@ -12,14 +12,14 @@ for record in cursor:
 for item in building_id:
     print(item, building_id[item])
 
-conn["EventsServices"].insert_one({
-   "name ": "Charla «Diplomacia científica: el contexto integral y global acerca del Agua» (Dra. Angélica Gutiérrez-Magness)",
-   "description ": "Conferencista: Dra. Angélica Gutiérrez-Magness, científica de la Administración Nacional Oceánica y Atmosférica (NOAA por sus siglas en inglés) de los Estados Unidos de América y profesora honoraria de la Universidad Nacional de Colombia.",
-   "photo": "link to Google/Drive/Path/Image",
-   "initDate": datetime.now(),
-   "rate":  85 ,
-   "location ": ObjectId(building_id["Edificio Posgrados de Ciencias Humanas"])
-})
+# conn["EventsServices"].insert_one({
+#    "name ": "Charla «Diplomacia científica: el contexto integral y global acerca del Agua» (Dra. Angélica Gutiérrez-Magness)",
+#    "description ": "Conferencista: Dra. Angélica Gutiérrez-Magness, científica de la Administración Nacional Oceánica y Atmosférica (NOAA por sus siglas en inglés) de los Estados Unidos de América y profesora honoraria de la Universidad Nacional de Colombia.",
+#    "photo": "link to Google/Drive/Path/Image",
+#    "initDate": datetime.now(),
+#    "rate":  85 ,
+#    "location ": ObjectId(building_id["Edificio Posgrados de Ciencias Humanas"])
+# })
 
 #
 # conn["EventsServices"].insert_many(
