@@ -3,6 +3,7 @@ from datetime import datetime
 from bson import ObjectId
 from datetime import timedelta
 from dateutil import parser
+from bson.json_util import dumps
 
 def db_filter(categories, distance, coordPoint, nameEventService, isEvent, initDate, finishDate, minRate, maxRate):
     # print(categories, distance, coordPoint, nameEventService, isEvent, initDate, finishDate, minRate, maxRate)
@@ -68,7 +69,7 @@ def db_filter(categories, distance, coordPoint, nameEventService, isEvent, initD
         # for record in conn["EventsServices"].find({}):
         #     print(record)
 
-        # print(list(conn['EventsServices'].aggregate(pipeline)))
+        print(len(list(conn['EventsServices'].aggregate(pipeline))))
     if (nameEventService != ""):
         pipeline.append(
             {
@@ -108,24 +109,28 @@ def db_filter(categories, distance, coordPoint, nameEventService, isEvent, initD
 
     result = list(conn['EventsServices'].aggregate(pipeline))
 
-    generalJson = {
-        "events": result,
-        "buildings": []
-    }
+    buildings = []
 
     for event in result:
+
+        buildings.append({
+            "name": list(conn["Buildings"].find({"_id": event["location"]}))[0]["name"],
+            "latlng": list(conn["Buildings"].find({"_id": event["location"]}))[0]["latlng"]
+        })
+
+
         event["_id"] = str(event["_id"])
 
-        generalJson.buildings.push({
-            "name": conn["Buildings"].find({"_id": event["_id"]}, {"_id": 0, "name": 1}),
-             "latlng": conn["Buildings"].find({"_id": event["_id"]}, {"_id": 0, "latlng": 1})
-        })
 
         event["location"] = str(event["location"])
         event["initDate"] = str(event["initDate"])
         event["finishDate"] = str(event["finishDate"])
 
-    return generalJson
+    return {
+        "events": result,
+        "buildings": buildings
+    }
+
 
 
 def db_add(name, isEvent, cat, description, location, initDate, finishDate):
