@@ -120,7 +120,7 @@ def db_filter(categories, distance, coordPoint, nameEventService, isEvent, initD
             buildings.append({
                 "name": datos[0]["name"],
                 "latlng": datos[0]["latlng"],
-                "_id": datos[0]["_id"]
+                "_id": str(datos[0]["_id"])
             })
 
             buildingsIDs.append( event["location"])
