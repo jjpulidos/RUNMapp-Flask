@@ -35,6 +35,7 @@ def db_filter(categories, distance, coordPoint, nameEventService, isEvent, initD
 
 
         listNearBuildings = []
+        listNameBuildings = []
 
         for record in cursor:
         # print(record)
@@ -107,18 +108,24 @@ def db_filter(categories, distance, coordPoint, nameEventService, isEvent, initD
 
     result = list(conn['EventsServices'].aggregate(pipeline))
 
-
+    generalJson = {
+        "events": result,
+        "buildings": []
+    }
 
     for event in result:
         event["_id"] = str(event["_id"])
+
+        generalJson.buildings.push({
+            "name": conn["Buildings"].find({"_id": event["_id"]}, {"_id": 0, "name": 1}),
+             "latlng": conn["Buildings"].find({"_id": event["_id"]}, {"_id": 0, "latlng": 1})
+        })
+
         event["location"] = str(event["location"])
         event["initDate"] = str(event["initDate"])
         event["finishDate"] = str(event["finishDate"])
 
-
-
-    return result
-
+    return generalJson
 
 
 def db_add(name, isEvent, cat, description, location, initDate, finishDate):
