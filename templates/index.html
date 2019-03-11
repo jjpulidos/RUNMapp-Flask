@@ -1,65 +1,187 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
-
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/5.8.6/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/5.8.6/firebase-auth.js"></script>
-    <script defer src="/__/firebase/5.8.6/firebase-database.js"></script>
-    <script defer src="/__/firebase/5.8.6/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/5.8.6/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
-
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
+<head>
+    <meta charset='utf-8' />
+    <title>Get features under the mouse pointer</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
     </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+</head>
+<body>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+<style>
+    /*#features {*/
+        /*position: absolute;*/
+        /*top: 0;*/
+        /*right: 0;*/
+        /*bottom: 0;*/
+        /*width: 300px;*/
+        /*overflow: auto;*/
+        /*background: rgba(255, 255, 255, 0.8);*/
+    /*}*/
+    #map canvas {
+        cursor: crosshair;
+    }
 
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+
+    .marker {
+        background-image: url('location-pin (1).png');
+        background-size: cover;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .mapboxgl-popup {
+        max-width: 200px;
+    }
+
+    .mapboxgl-popup-content {
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+</style>
+<div id='map'></div>
+<!--<pre id='features'></pre>-->
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiampwdWxpZG9zIiwiYSI6ImNqdDI5YXZwNDI3bzU0NW9kZGVscGFvbzcifQ.nzvc3anrE_jXsxL140Mxsg';
+
+    var bounds = [[-74.099611,4.630076], [-74.072035,4.644709]];
+
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/dark-v9',
+        center: [-74.084238, 4.638144],
+         maxBounds: bounds,
+        hash: true,
+         zoom: 15,
+        pitch: 120,
+        bearing: -70,
+        container: 'map'
+    });
+
+    // map.on('mousemove', function (e) {
+    //     var features = map.queryRenderedFeatures(e.point);
+    //     document.getElementById('features').innerHTML = JSON.stringify(features, null, 2);
+    // });
+
+    map.on('load', function() {
+        var layers = map.getStyle().layers;
+
+        var labelLayerId;
+        for (var i = 0; i < layers.length; i++) {
+            if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
+                labelLayerId = layers[i].id;
+                break;
+            }
         }
-      });
-    </script>
-  </body>
+
+        map.addLayer({
+            'id': '3d-buildings',
+            'source': 'composite',
+            'source-layer': 'building',
+            'filter': ['==', 'extrude', 'true'],
+            'type': 'fill-extrusion',
+            'minzoom': 15,
+            'paint': {
+                'fill-extrusion-color': '#aaa',
+
+                'fill-extrusion-height': [
+                    "interpolate", ["linear"], ["zoom"],
+                    15, 0,
+                    15.05, ["get", "height"]
+                ],
+                'fill-extrusion-base': [
+                    "interpolate", ["linear"], ["zoom"],
+                    15, 0,
+                    15.05, ["get", "min_height"]
+                ],
+                'fill-extrusion-opacity': .6
+            }
+        }, labelLayerId);
+
+
+
+        map.addSource('currentBuildings', {
+            type: 'geojson',
+            data: {
+                "type": "FeatureCollection",
+                "features": []
+            }
+        });
+        map.addLayer({
+            "id": "highlight",
+            "source": "currentBuildings",
+            'type': 'line',
+            'minzoom': 15,
+            'paint': {
+                'line-color': '#f00',
+                'line-width': 3
+            }
+        }, labelLayerId);
+        map.on('click', '3d-buildings', function(e) {
+            map.getSource('currentBuildings').setData({
+                "type": "FeatureCollection",
+                "features": e.features
+            });
+        });
+    });
+
+    var geojson = {
+        type: 'FeatureCollection',
+        features: []
+    };
+
+    //Aqui iteramos entre los edificios retornados y seleccionamos su centro para crear un marker
+
+    arrayBuildingsSelected= [{
+        "name": "Escuela de Cine y Televisión",
+        "latlng":{
+            "coordinates":[-74.085543, 4.640612]
+        }
+
+    },
+    {
+        "name": "Escuela de Medicina",
+        "latlng":{
+            "coordinates":[-74.084275, 4.636449]
+        }
+    }]
+
+    arrayBuildingsSelected.map(building => {
+        geojson.features.push({
+            type: 'Feature',
+            geometry: {
+                type: 'Point',
+                coordinates: building.latlng.coordinates
+            },
+            properties: {
+                name: building.name
+            }
+        })
+    });
+
+
+
+    geojson.features.forEach(marker => {
+
+        var el = document.createElement('div');
+        el.className = 'marker';
+
+        new mapboxgl.Marker(el)
+            .setLngLat(marker.geometry.coordinates)
+            .addTo(map);
+
+        el.addEventListener('click', () => console.log(marker.properties.name));
+    });
+
+</script>
+
+</body>
 </html>
