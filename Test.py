@@ -27,7 +27,7 @@ def json_response(payload, status=200):
 @app.route('/')
 @cross_origin()
 def index():
-    return render_template('MapBox.html')
+    return render_template('index.html')
 
 
 @app.route('/getEvents', methods=['POST', 'GET'])
