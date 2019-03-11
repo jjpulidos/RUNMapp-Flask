@@ -37,7 +37,7 @@ def getEvents():
     print(request)
     data = json.loads(request.data)
 
-
+    print(data)
     if request.method == 'POST':
         db_response = db_filter(data["categories"], data["distance"], data["coordPoint"], data["nameEventService"],
                              data["isEvent"], data["initDate"], data["finishDate"], data["minRate"], data["maxRate"])

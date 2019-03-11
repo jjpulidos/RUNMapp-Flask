@@ -5,12 +5,13 @@ from datetime import timedelta
 from dateutil import parser
 
 def db_filter(categories, distance, coordPoint, nameEventService, isEvent, initDate, finishDate, minRate, maxRate):
-
+    # print(categories, distance, coordPoint, nameEventService, isEvent, initDate, finishDate, minRate, maxRate)
     pipeline = []
     listNearBuildings = None
-    initDate=  datetime.datetime.fromtimestamp(initDate / 1e3)
-    finishDate=  datetime.datetime.fromtimestamp(finishDate / 1e3)
-    # print(categories, distance, coordPoint, nameEventService, isEvent, initDate, finishDate, minRate, maxRate)
+    initDate=  datetime.fromtimestamp(initDate / 1e3)
+    # print(initDate)
+    finishDate=  datetime.fromtimestamp(finishDate / 1e3)
+
     coordPoint[0] = float(coordPoint[0])
     coordPoint[1] = float(coordPoint[1])
     # print(coordPoint[0], coordPoint[1], type(coordPoint[0]), type(coordPoint[1]))
