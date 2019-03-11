@@ -14,15 +14,6 @@
 <body>
 
 <style>
-    /*#features {*/
-        /*position: absolute;*/
-        /*top: 0;*/
-        /*right: 0;*/
-        /*bottom: 0;*/
-        /*width: 300px;*/
-        /*overflow: auto;*/
-        /*background: rgba(255, 255, 255, 0.8);*/
-    /*}*/
     #map canvas {
         cursor: crosshair;
     }
@@ -48,7 +39,7 @@
 
 </style>
 <div id='map'></div>
-<!--<pre id='features'></pre>-->
+
 <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiampwdWxpZG9zIiwiYSI6ImNqdDI5YXZwNDI3bzU0NW9kZGVscGFvbzcifQ.nzvc3anrE_jXsxL140Mxsg';
 
@@ -66,10 +57,6 @@
         container: 'map'
     });
 
-    // map.on('mousemove', function (e) {
-    //     var features = map.queryRenderedFeatures(e.point);
-    //     document.getElementById('features').innerHTML = JSON.stringify(features, null, 2);
-    // });
 
     map.on('load', function() {
         var layers = map.getStyle().layers;
