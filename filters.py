@@ -110,18 +110,22 @@ def db_filter(categories, distance, coordPoint, nameEventService, isEvent, initD
     result = list(conn['EventsServices'].aggregate(pipeline))
 
     buildings = []
+    buildingsIDs= []
 
     for event in result:
 
-        buildings.append({
-            "name": list(conn["Buildings"].find({"_id": event["location"]}))[0]["name"],
-            "latlng": list(conn["Buildings"].find({"_id": event["location"]}))[0]["latlng"]
-        })
+        if not event["location"] in buildingsIDs:
+            datos = list(conn["Buildings"].find({"_id": event["location"]}))
 
+            buildings.append({
+                "name": datos[0]["name"],
+                "latlng": datos[0]["latlng"],
+                "_id": datos[0]["_id"]
+            })
+
+            buildingsIDs.append( event["location"])
 
         event["_id"] = str(event["_id"])
-
-
         event["location"] = str(event["location"])
         event["initDate"] = str(event["initDate"])
         event["finishDate"] = str(event["finishDate"])
