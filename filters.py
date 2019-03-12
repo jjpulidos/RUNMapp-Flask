@@ -70,27 +70,31 @@ def db_filter(categories, distance, coordPoint, nameEventService, isEvent, initD
         #     print(record)
 
         print(len(list(conn['EventsServices'].aggregate(pipeline))))
+
+
     if (nameEventService != ""):
         pipeline.append(
             {
                 "$match": {
                     "name": nameEventService,
-                    "isEvent": isEvent,
-                    "cat": {"$in": categories},
-                    "initDate": {"$lte": initDate},
-                    #"finishDate": {"$lt": finishDate},
-                    "rate": {"$gte": minRate, "$lte": maxRate},
-                }})
-    else:
+            }})
+
+    if(categories!=""):
         pipeline.append(
             {
                 "$match": {
-                    "isEvent": isEvent,
                     "cat": {"$in": categories},
-                    #"initDate": {"$lte": initDate},
-                    #"finishDate": {"$lt": finishDate},
-                    "rate": {"$gte": minRate, "$lte": maxRate},
                 }})
+
+
+    pipeline.append(
+        {
+            "$match": {
+                "isEvent": isEvent,
+                "initDate": {"$gt": initDate},
+                "finishDate": {"$lte": finishDate},
+                "rate": {"$gte": minRate, "$lte": maxRate},
+            }})
 
     pipeline.append(
         {
@@ -144,7 +148,6 @@ def db_add(name, isEvent, cat, description, location, initDate, finishDate):
     conn["EventsServices"].insert_one({
        "name": name,
        "description": description,
-       "photo": "link to Google/Drive/Path/Image",
        "initDate": parser.parse(initDate),
        "rate":  0,
        "location": ObjectId(location),
@@ -152,4 +155,3 @@ def db_add(name, isEvent, cat, description, location, initDate, finishDate):
        "isEvent": isEvent,
        "cat": cat
     })
-    return
