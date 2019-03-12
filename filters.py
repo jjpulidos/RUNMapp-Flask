@@ -157,6 +157,31 @@ def db_add(name, isEvent, cat, description, location, initDate, finishDate):
            "isEvent": isEvent,
            "cat": cat
         })
-        return "Exito"
+        return "Insertado con Exito :v"
+    except:
+        return "Hubo un Error :c"
+
+
+def db_update(name, isEvent, cat, description, location, initDate, finishDate):
+
+    conn = connection_Mongo()
+
+    try:
+
+        conn["EventsServices"].update_one(
+            {
+                "name": name
+            },
+            {
+                "description": description,
+                "initDate": parser.parse(initDate),
+                "rate":  "$rate",
+                "location": ObjectId(location),
+                "finishDate": parser.parse(finishDate),
+                "isEvent": isEvent,
+                "cat": cat
+            })
+
+        return "Se cambio la informacion con Exito"
     except:
         return "Hubo un Error"

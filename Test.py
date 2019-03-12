@@ -1,9 +1,6 @@
 from flask import Flask, json, request, render_template, Response
-from Conn import connection_Mongo
-from filters import db_filter, db_add
-from bson import ObjectId
+from filters import db_filter, db_add, db_update
 from bson.json_util import dumps
-
 
 from flask_cors import *
 
@@ -49,6 +46,17 @@ def addEvents():
     # print(data)
 
     return db_add(data["name"], data["isEvent"], data["cat"], data["description"], data["location"], data["initDate"],
+           data["finishDate"])
+
+
+@app.route('/editEvents', methods=['POST', 'GET'])
+@cross_origin()
+def editEvents():
+
+    data = json.loads(request.data)
+    print(data)
+
+    return db_update(data["name"], data["isEvent"], data["cat"], data["description"], data["location"], data["initDate"],
            data["finishDate"])
 
 
