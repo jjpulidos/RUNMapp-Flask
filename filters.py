@@ -145,13 +145,18 @@ def db_add(name, isEvent, cat, description, location, initDate, finishDate):
 
     conn = connection_Mongo()
 
-    conn["EventsServices"].insert_one({
-       "name": name,
-       "description": description,
-       "initDate": parser.parse(initDate),
-       "rate":  0,
-       "location": ObjectId(location),
-       "finishDate": parser.parse(finishDate),
-       "isEvent": isEvent,
-       "cat": cat
-    })
+    try:
+
+        conn["EventsServices"].insert_one({
+           "name": name,
+           "description": description,
+           "initDate": parser.parse(initDate),
+           "rate":  0.0,
+           "location": ObjectId(location),
+           "finishDate": parser.parse(finishDate),
+           "isEvent": isEvent,
+           "cat": cat
+        })
+        return "Exito"
+    except:
+        return "Hubo un Error"

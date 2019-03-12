@@ -14,16 +14,6 @@ cors = CORS(app)
 def json_response(payload, status=200):
  return (json.dumps(payload), status, {'content-type': 'application/json'})
 
-
-# def db_getEvents(building):
-#
-#     conn = connection_Mongo()
-#     db_locationID = conn['Buildings'].find({"name": building}, {"_id": 1})
-#
-#     return conn['EventsServices'].find({
-#         "location": ObjectId(db_locationID.next()["_id"])
-#     })
-
 @app.route('/')
 @cross_origin()
 def index():
@@ -44,7 +34,7 @@ def getEvents():
         if db_response != None:
             print(dumps(db_response))
             resp = Response(dumps(db_response), status=200, mimetype='application/json')
-            resp.headers['Link'] = 'http://192.168.1.118:5000'
+            # resp.headers['Link'] = 'http://192.168.1.118:5000'
             return resp
         else:
             error = 'Invalid username/password'
@@ -56,10 +46,10 @@ def getEvents():
 def addEvents():
 
     data = json.loads(request.data)
-    print(data)
-    db_add(data["name"], data["isEvent"], data["cat"], data["description"], data["location"], data["initDate"],
+    # print(data)
+
+    return db_add(data["name"], data["isEvent"], data["cat"], data["description"], data["location"], data["initDate"],
            data["finishDate"])
-    return
 
 
 if __name__ == "__main__":
