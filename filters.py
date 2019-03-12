@@ -78,7 +78,7 @@ def db_filter(categories, distance, coordPoint, nameEventService, isEvent, initD
                 "$match": {
                     "name": nameEventService,
             }})
-
+    print(len(list(conn['EventsServices'].aggregate(pipeline))))
     if(categories!=""):
         pipeline.append(
             {
@@ -86,16 +86,16 @@ def db_filter(categories, distance, coordPoint, nameEventService, isEvent, initD
                     "cat": {"$in": categories},
                 }})
 
-
+    print(len(list(conn['EventsServices'].aggregate(pipeline))))
     pipeline.append(
         {
             "$match": {
                 "isEvent": isEvent,
-                "initDate": {"$gt": initDate},
-                "finishDate": {"$lte": finishDate},
+               # "initDate": {"$lt": initDate},
+               # "finishDate": {"$lte": finishDate},
                 "rate": {"$gte": minRate, "$lte": maxRate},
             }})
-
+    print(len(list(conn['EventsServices'].aggregate(pipeline))))
     pipeline.append(
         {
             "$project": {
