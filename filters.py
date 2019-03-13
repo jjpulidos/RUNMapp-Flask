@@ -177,15 +177,18 @@ def db_update(id, name, isEvent, cat, description, location, initDate, finishDat
             {
                 "_id": ObjectId(id)
             },
-            {"$set": {
-                "name": name,
-                "description": description,
-                "initDate": datetime.now(),
-                "rate":  50,
-                "location": ObjectId(location),
-                "finishDate": datetime.now(),
-                "isEvent": isEvent,
-                "cat": cat}
+            {
+                "$set": {
+                    "name": name,
+                    # "description": description,
+                    # "initDate": datetime.now(),
+                    # "rate":  50.0,
+                    # "location": ObjectId(location),
+                    # "finishDate": datetime.now(),
+                    # "isEvent": isEvent,
+                    # "cat": cat
+                }
+
             })
 
         return "Se cambio la informacion con Exito"
