@@ -180,13 +180,13 @@ def db_update(id, name, isEvent, cat, description, location, initDate, finishDat
             {
                 "$set": {
                     "name": name,
-                    # "description": description,
+                    "description": description,
                     # "initDate": datetime.now(),
                     # "rate":  50.0,
                     # "location": ObjectId(location),
                     # "finishDate": datetime.now(),
                     # "isEvent": isEvent,
-                    # "cat": cat
+                     "cat": cat
                 }
 
             })
