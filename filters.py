@@ -180,7 +180,7 @@ def db_update(id, name, isEvent, cat, description, location, initDate, finishDat
                 "name": name,
                 "description": description,
                 "initDate": parser.parse(initDate),
-                "rate":  "$rate",
+                "rate":  50,
                 "location": ObjectId(location),
                 "finishDate": parser.parse(finishDate),
                 "isEvent": isEvent,
