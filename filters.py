@@ -177,7 +177,7 @@ def db_update(id, name, isEvent, cat, description, location, initDate, finishDat
             {
                 "_id": ObjectId(id)
             },
-            {
+            {"$set": {
                 "name": name,
                 "description": description,
                 "initDate": datetime.now(),
@@ -185,7 +185,7 @@ def db_update(id, name, isEvent, cat, description, location, initDate, finishDat
                 "location": ObjectId(location),
                 "finishDate": datetime.now(),
                 "isEvent": isEvent,
-                "cat": cat
+                "cat": cat}
             })
 
         return "Se cambio la informacion con Exito"
