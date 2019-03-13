@@ -159,16 +159,16 @@ def db_add(name, isEvent, cat, description, location, initDate, finishDate):
     try:
 
         vari1= str(response)
-        vari2 = str(response["insertedId"])
-        vari3 = str(str(response["insertedId"]))
+        vari2 = str(response.inserted_id)
+        vari3 = str(str(response.inserted_id))
 
 
-        return str(vari1 +vari2 +vari3)
+        return vari2
 
     except:
         vari1 = str(response)
-        vari2 = str(response["insertedId"])
-        vari3 = str(str(response["insertedId"]))
+        vari2 = str(response.inserted_id)
+        vari3 = str(str(response.inserted_id))
         return "Hubo un Error :c " +str( vari1+ vari2 + vari3)
 
 
