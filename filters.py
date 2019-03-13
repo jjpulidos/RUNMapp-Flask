@@ -183,9 +183,9 @@ def db_update(id, name, isEvent, cat, description, location, initDate, finishDat
                     "description": description,
                     # "initDate": datetime.now(),
                     # "rate":  50.0,
-                    # "location": ObjectId(location),
+                     "location": ObjectId(location),
                     # "finishDate": datetime.now(),
-                    # "isEvent": isEvent,
+                     "isEvent": isEvent,
                      "cat": cat
                 }
 
