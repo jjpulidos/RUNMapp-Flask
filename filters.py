@@ -147,7 +147,9 @@ def db_add(name, isEvent, cat, description, location, initDate, finishDate):
 
     try:
 
-        conn["EventsServices"].insert_one({
+
+
+        return str(conn["EventsServices"].insert_one({
            "name": name,
            "description": description,
            "initDate": parser.parse(initDate),
@@ -156,8 +158,8 @@ def db_add(name, isEvent, cat, description, location, initDate, finishDate):
            "finishDate": parser.parse(finishDate),
            "isEvent": isEvent,
            "cat": cat
-        })
-        return "Insertado con Exito :v"
+        })["insertedId"])
+
     except:
         return "Hubo un Error :c"
 
