@@ -180,10 +180,10 @@ def db_update(id, name, isEvent, cat, description, location, initDate, finishDat
             {
                 "name": name,
                 "description": description,
-                "initDate": parser.parse(initDate),
+                "initDate": datetime.now(),
                 "rate":  50,
                 "location": ObjectId(location),
-                "finishDate": parser.parse(finishDate),
+                "finishDate": datetime.now(),
                 "isEvent": isEvent,
                 "cat": cat
             })
@@ -191,4 +191,4 @@ def db_update(id, name, isEvent, cat, description, location, initDate, finishDat
         return "Se cambio la informacion con Exito"
 
     except Exception:
-        return traceback.print_exc(file=sys.stdout)
+        return "Hubo un error"

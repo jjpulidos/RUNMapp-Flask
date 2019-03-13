@@ -2,6 +2,7 @@ from pymongo import MongoClient
 from datetime import datetime
 from bson import ObjectId
 from bson.json_util import dumps
+from dateutil import parser
 
 from datetime import timedelta
 
@@ -16,7 +17,7 @@ def connection_Mongo(param={}):
     return db_mongo
 
 
-conn= connection_Mongo()
+# conn= connection_Mongo()
 
 # print(dumps(conn["Buildings"].find({},{"name":1})))
 
@@ -33,3 +34,20 @@ conn= connection_Mongo()
 # })
 
 #
+
+
+# conn["EventsServices"].update_one(
+#     {
+#         "_id": ObjectId("5c88a48a8ed97e000b964951")
+#     },
+#     {
+#         "name": "Ronald",
+#         "description": "Helloss",
+#         "initDate": parser.parse("Thu Mar 28 2019 02:02:00 GMT-0500 (Colombia Standard Time)"),
+#         "rate": 50,
+#         "location": ObjectId("5c549598573ea33fb2afb773"),
+#         "finishDate": parser.parse("Thu Mar 28 2019 02:02:00 GMT-0500 (Colombia Standard Time)"),
+#         "isEvent": True,
+#         "cat": "Sports"
+#     })
+
