@@ -148,20 +148,26 @@ def db_add(name, isEvent, cat, description, location, initDate, finishDate):
     try:
 
 
+        response = conn["EventsServices"].insert_one({
+            "name": name,
+            "description": description,
+            "initDate": parser.parse(initDate),
+            "rate": 0.0,
+            "location": ObjectId(location),
+            "finishDate": parser.parse(finishDate),
+            "isEvent": isEvent,
+            "cat": cat
+        })
+        vari1= str(response)
+        vari2 = str(response["insertedId"])
+        vari3 = str(str(response["insertedId"]))
 
-        return str(conn["EventsServices"].insert_one({
-           "name": name,
-           "description": description,
-           "initDate": parser.parse(initDate),
-           "rate":  0.0,
-           "location": ObjectId(location),
-           "finishDate": parser.parse(finishDate),
-           "isEvent": isEvent,
-           "cat": cat
-        })["insertedId"])
+
+        return vari1 +vari2 +vari3
 
     except:
-        return "Hubo un Error :c"
+
+        return "Hubo un Error :c " + vari1+ vari2 + vari3
 
 
 def db_update(name, isEvent, cat, description, location, initDate, finishDate):
