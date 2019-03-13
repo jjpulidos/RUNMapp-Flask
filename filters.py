@@ -145,34 +145,28 @@ def db_add(name, isEvent, cat, description, location, initDate, finishDate):
 
     conn = connection_Mongo()
 
-    response = conn["EventsServices"].insert_one({
-        "name": name,
-        "description": description,
-        "initDate": parser.parse(initDate),
-        "rate": 0.0,
-        "location": ObjectId(location),
-        "finishDate": parser.parse(finishDate),
-        "isEvent": isEvent,
-        "cat": cat
-    })
+
 
     try:
 
-        vari1= str(response)
-        vari2 = str(response.inserted_id)
-        vari3 = str(str(response.inserted_id))
 
-
-        return vari2
+        return str(conn["EventsServices"].insert_one({
+                    "name": name,
+                    "description": description,
+                    "initDate": parser.parse(initDate),
+                    "rate": 0.0,
+                    "location": ObjectId(location),
+                    "finishDate": parser.parse(finishDate),
+                    "isEvent": isEvent,
+                    "cat": cat
+                }).inserted_id)
 
     except:
-        vari1 = str(response)
-        vari2 = str(response.inserted_id)
-        vari3 = str(str(response.inserted_id))
-        return "Hubo un Error :c " +str( vari1+ vari2 + vari3)
+
+        return "Hubo un Error :c"
 
 
-def db_update(name, isEvent, cat, description, location, initDate, finishDate):
+def db_update(id, name, isEvent, cat, description, location, initDate, finishDate):
 
     conn = connection_Mongo()
 
@@ -180,9 +174,10 @@ def db_update(name, isEvent, cat, description, location, initDate, finishDate):
 
         conn["EventsServices"].update_one(
             {
-                "name": name
+                "_id": ObjectId(id)
             },
             {
+                "name": name,
                 "description": description,
                 "initDate": parser.parse(initDate),
                 "rate":  "$rate",
@@ -193,5 +188,6 @@ def db_update(name, isEvent, cat, description, location, initDate, finishDate):
             })
 
         return "Se cambio la informacion con Exito"
+
     except:
         return "Hubo un Error"

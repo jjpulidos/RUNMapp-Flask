@@ -56,7 +56,7 @@ def editEvents():
     data = json.loads(request.data)
     print(data)
 
-    return db_update(data["name"], data["isEvent"], data["cat"], data["description"], data["location"], data["initDate"],
+    return db_update(data["id"], data["name"], data["isEvent"], data["cat"], data["description"], data["location"], data["initDate"],
            data["finishDate"])
 
 
