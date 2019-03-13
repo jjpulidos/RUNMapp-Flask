@@ -191,4 +191,4 @@ def db_update(id, name, isEvent, cat, description, location, initDate, finishDat
         return "Se cambio la informacion con Exito"
 
     except Exception:
-        return "Hubo un error"
+        return "Hubo un error" + str(id) + " " + str(name)+ " " + str(isEvent)+ str(cat) + str(description)+ str(location)
