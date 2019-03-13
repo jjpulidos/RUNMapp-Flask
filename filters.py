@@ -4,6 +4,7 @@ from bson import ObjectId
 from datetime import timedelta
 from dateutil import parser
 from bson.json_util import dumps
+import sys, traceback
 
 def db_filter(categories, distance, coordPoint, nameEventService, isEvent, initDate, finishDate, minRate, maxRate):
     # print(categories, distance, coordPoint, nameEventService, isEvent, initDate, finishDate, minRate, maxRate)
@@ -189,5 +190,5 @@ def db_update(id, name, isEvent, cat, description, location, initDate, finishDat
 
         return "Se cambio la informacion con Exito"
 
-    except:
-        return "Hubo un Error"
+    except Exception:
+        return traceback.print_exc(file=sys.stdout)
