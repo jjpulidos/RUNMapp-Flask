@@ -20,9 +20,9 @@ def index():
 @app.route('/getEvents', methods=['POST', 'GET'])
 @cross_origin()
 def getEvents():
-    return "Holas"
+    # return "Holas"
     error = None
-    print(request)
+    # print(request)
     data = json.loads(request.data)
 
     print(data)
