@@ -16,7 +16,7 @@ def connection_Mongo(param={}):
 
     return db_mongo
 
-# conn= connection_Mongo()
+conn= connection_Mongo()
 #
 #
 # conn["EventsServices"].update_many(
